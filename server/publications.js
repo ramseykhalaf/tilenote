@@ -1,7 +1,7 @@
 Meteor.publish('floors', function() {
-  return Floors.find({});
+    return Floors.find({});
 });
 
 Meteor.publish('tilesByFloorId', function(floorId) {
-  return Tiles.find({floorId: floorId});
+    return Tiles.find({floorId: floorId});
 });
