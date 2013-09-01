@@ -16,7 +16,7 @@ if (Floors.find({}).count() == 0 && Tiles.find({}).count() == 0) {
   Tiles.insert({
     floorId: meteorFloorId,
     title: 'Introducing Telescope',
-    url: 'http://sachagreif.com/introducing-telescope/'
+    url: 'http://sachagreif.com/introducing-telescope'
   });
 
   Tiles.insert({
