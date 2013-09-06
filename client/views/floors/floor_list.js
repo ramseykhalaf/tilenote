@@ -1,4 +1,4 @@
-Template.floor_ul.helpers({
+Template.floor_list.helpers({
     floors: function() {
         return Floors.find();
     }
