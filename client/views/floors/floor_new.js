@@ -3,13 +3,11 @@ Template.floor_new.events({
         e.preventDefault();
 
         var form = $(e.target);
-
         var newFloor = {
-            userId: Meteor.userId(),
+            ownerId: Meteor.userId(),
             title: form.find('[name=title]').val(),
             description: form.find('[name=description]').val()
         };
-
         Floors.insert(newFloor);
     }
 });

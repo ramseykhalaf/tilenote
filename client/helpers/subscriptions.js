@@ -3,7 +3,7 @@ Deps.autorun(function() {
 });
 
 Deps.autorun(function() {
-    Meteor.subscribe('floorsByUserId', Meteor.userId());
+    Meteor.subscribe('floorsByOwnerId', Meteor.userId());
 });
 
 Deps.autorun(function() {
