@@ -1,5 +1,9 @@
 Template.floor_list.helpers({
-    floors: function() {
-        return Floors.find();
+    floorsPublic: function() {
+        return Floors.find({ ownerId: null });
+    },
+    floorsPrivate: function() {
+    	return Floors.find({ ownerId: Meteor.userId() });
     }
+
 });

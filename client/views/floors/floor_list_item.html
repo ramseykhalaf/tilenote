@@ -1,4 +1,10 @@
 <template name="floor_list_item">
-    <dt><a href={{showFloorPath this}}>{{title}}</a><span class="icon-trash delete"/></dt>
-    <dd>{{description}}</dd>
+    <li {{#if currentFloor}} class="active" {{/if}}>
+		<a href={{showFloorPath this}}>
+			{{title}}
+			{{#if ownFloor}}
+				<button class="close delete">&times</button>
+			{{/if}}
+    	</a>
+    </li>
 </template>
