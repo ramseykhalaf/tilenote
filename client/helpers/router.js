@@ -19,5 +19,9 @@ Meteor.Router.add({
     	and: function() {
     		Session.set('floorId', null);
     	}
+    },
+    '/floors/:_id/tiles/new': {
+        to: 'tile_new',
+        as: 'newTile'
     }
 });

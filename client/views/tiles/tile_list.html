@@ -4,4 +4,7 @@
       		{{> tile_list_item}}
     	{{/each}}
   	</ul>
+  	{{#if ownCurrentFloor}}
+    	<a href={{newTilePath currentFloor}}>+ add new tile</a>
+    {{/if}}
 </template>
