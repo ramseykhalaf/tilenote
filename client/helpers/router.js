@@ -1,16 +1,23 @@
 Meteor.Router.add({
-	'/floor': {
-		to: 'floor_main',
-		as: 'showFloor',
+	'/floors/new': {
+		to: 'floor_new',
+		as: 'newFloor',
 		and: function() {
 			Session.set('floorId', null);
 		}
 	},
-    '/floor/:_id': {
+    '/floors/:_id': {
     	to: 'floor_main',
         as: 'showFloor',
         and: function(_id) {
             Session.set('floorId', _id);
         }
+    },
+    '/floors': {
+    	to: 'floor_main',
+    	as: 'listFloors',
+    	and: function() {
+    		Session.set('floorId', null);
+    	}
     }
 });

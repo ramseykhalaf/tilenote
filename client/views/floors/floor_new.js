@@ -8,6 +8,7 @@ Template.floor_new.events({
             title: form.find('[name=title]').val(),
             description: form.find('[name=description]').val()
         };
-        Floors.insert(newFloor);
+        newFloor._id = Floors.insert(newFloor);
+        Meteor.Router.to('showFloor', newFloor);
     }
 });
