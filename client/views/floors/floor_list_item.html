@@ -1,6 +1,6 @@
 <template name="floor_list_item">
     <li {{#if currentFloor}} class="active" {{/if}}>
-		<a href={{showFloorPath this}}>
+		<a href={{showFloorPath this}} {{#if ownFloor}} class="deletable" {{/if}}>
 			{{title}}
 			{{#if ownFloor}}
 				<button class="close delete">&times</button>
