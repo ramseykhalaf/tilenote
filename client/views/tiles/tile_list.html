@@ -1,10 +1,12 @@
 <template name="tile_list">
-  	<ul>
-    	{{#each tiles}}
-      		{{> tile_list_item}}
-    	{{/each}}
-  	</ul>
-  	{{#if ownCurrentFloor}}
-    	<a href={{newTilePath currentFloor}}>+ add new tile</a>
-    {{/if}}
+    <div class="row-fluid">
+      	<ul class="thumbnails">
+        	{{#each tiles}}
+          		{{> tile_list_item}}
+        	{{/each}}
+      	</ul>
+      	{{#if ownCurrentFloor}}
+        	<a href={{newTilePath currentFloor}}>+ add new tile</a>
+        {{/if}}
+    </div>
 </template>
