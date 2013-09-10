@@ -1,7 +1,9 @@
 <template name="floor_show">
-    {{#if floorSelected}}
-        {{>tile_list}}
-    {{else}}
-        No floor selected
-    {{/if}}
+    <div class="floor-container">
+        {{#if this}}
+            {{>tile_list}}
+        {{else}}
+            No floor selected
+        {{/if}}
+    </div>
 </template>

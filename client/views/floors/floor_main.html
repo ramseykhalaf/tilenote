@@ -4,7 +4,9 @@
     		{{> floor_list}}
       	</div>      
       	<div class="span9">
-        	{{> floor_show}}
+            {{#with currentFloor}}
+        	   {{> floor_show}}
+            {{/with}}
       	</div>
     </div>
 </template>

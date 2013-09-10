@@ -7,7 +7,6 @@ Template.tile_list.helpers({
     },
     ownCurrentFloor: function () {
     	var currentFloor = Floors.findOne(Session.get('floorId')) || {};
-    	console.log(currentFloor);
        	return currentFloor.ownerId === Meteor.userId();
     }
 });

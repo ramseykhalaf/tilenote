@@ -2,7 +2,7 @@ Floors = new Meteor.Collection('floors');
 
 Floors.allow({
     insert: function(userId, doc) {
-        console.log(userId);
+        console.log('adding new floor with userId: ' + userId);
         console.log(doc);
         return (userId && userId === doc.ownerId);
     },
