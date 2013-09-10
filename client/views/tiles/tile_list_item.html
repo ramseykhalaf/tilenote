@@ -1,8 +1,12 @@
 <template name="tile_list_item">
-    <li>
-        <div class="thumbnail">
-      		<img data-src="holder.js/200x200">
-      		<h5>{{title}}</h5>
-    	</div>
+    <li class="tile">
+        <a href={{url}} class="thumbnail">
+            <div>
+          		<img data-src="holder.js/200x200">
+                <div class="caption">
+          		    {{title}}
+                </div>
+        	</div>
+        </a>
     </li>
 </template>
