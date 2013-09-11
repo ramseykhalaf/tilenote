@@ -3,7 +3,8 @@ Template.floor_list.helpers({
         return Floors.find({ ownerId: null });
     },
     floorsPrivate: function() {
-    	return Floors.find({ ownerId: Meteor.userId() });
+    	return Meteor.userId() ? Floors.find({ ownerId: Meteor.userId() })
+                               : null;
     }
 
 });

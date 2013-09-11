@@ -9,6 +9,8 @@
 	        <li class="nav-header">Your floors</li>
 	        {{#each floorsPrivate}}
 	        	{{> floor_list_item}}
+	        {{else}}
+	        	<a href={{newFloorPath}}>+ new floor</a>
 	        {{/each}}
 	    </ul>
 	</div>
