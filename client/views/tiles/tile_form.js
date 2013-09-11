@@ -1,6 +1,8 @@
-Template.tile_new.events({
+Template.tile_form.events({
     'submit form': function(e) {
         e.preventDefault();
+
+        console.log(this);
 
         var currentFloor = Session.get('floorId');
         var form = $(e.target);

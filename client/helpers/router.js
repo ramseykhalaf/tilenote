@@ -21,7 +21,7 @@ Meteor.Router.add({
     	}
     },
     '/floors/:_id/tiles/new': {
-        to: 'tile_new',
+        to: 'tile_form',
         as: 'newTile'
     }
 });
