@@ -1,3 +1,12 @@
+Template.tile_form.helpers({
+    title: function() {
+        return Tiles.findOne(Session.get('tileId'))['title'];
+    },
+    url: function() {
+        return Tiles.findOne(Session.get('tileId'))['url'];
+    }
+});
+
 Template.tile_form.events({
     'submit form': function(e) {
         e.preventDefault();
