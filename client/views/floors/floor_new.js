@@ -1,14 +1,16 @@
 Template.floor_new.events({
-    'submit form': function(e) {
-        e.preventDefault();
+    'submit form': function(evt) {
+        evt.preventDefault();
 
-        var form = $(e.target);
-        var newFloor = {
-            ownerId: Meteor.userId(),
-            title: form.find('[name=title]').val(),
-            description: form.find('[name=description]').val()
-        };
-        newFloor._id = Floors.insert(newFloor);
-        Meteor.Router.to('showFloor', newFloor);
+        var form = $(evt.target);
+        var title = form.find('[name=title]').val();
+        var description = form.find('[name=description]').val();
+        
+        var newFloorId = Meteor.call('createPost', title, description, function(error, newFloorId) {
+            if (error)
+                return alert(error.reason);
+
+            Meteor.Router.to('showFloor', newFloorId);
+        });
     }
 });
