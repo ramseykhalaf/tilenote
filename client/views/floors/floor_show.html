@@ -1,9 +1,31 @@
 <template name="floor_show">
     <div class="floor-container">
-        <div class="page-header editable">
+
+        <div class="page-header">
             {{description}}
-            <a class="icon-edit edit" href="{{editFloorPath this}}"/>
+            {{#if ownCurrentFloor}}
+                <button class="btn btn-small pull-right edit">
+                    <i class="icon-edit"/> edit floor
+                </button>
+            {{/if}}
         </div>
-        {{> tile_list}}
+
+        <div class="row-fluid">
+            <ul class="thumbnails">
+                {{#each tiles}}
+                    {{> tile_list_item}}
+                {{/each}}
+            
+            {{#if ownCurrentFloor}}
+                <li class="thumbnail">
+                    <a href="{{newTilePath currentFloor}}">
+                        <img data-src="holder.js/200x200">
+                        <div class="caption">+ add new tile</div>
+                    </a>
+                </li>
+            {{/if}}
+            </ul>
+        </div>
+
     </div>
 </template>
