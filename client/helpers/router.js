@@ -33,3 +33,15 @@ Meteor.Router.add({
         }
     }
 });
+
+Meteor.Router.filters({
+    'requireLogin': function(templateName) {
+        if (Meteor.userId()) {
+            return templateName;
+        } else {
+            return 'access_denied';
+        }
+    }
+});
+
+Meteor.Router.filter('requireLogin', {only: ['floor_new', 'tile_form']});
