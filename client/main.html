@@ -4,6 +4,8 @@
 <body>
     <div class="container">
         {{> header}}
-        {{renderPage}}
+        {{#isolate}}
+            {{renderPage}}
+        {{/isolate}}
     </div>
 </body>
