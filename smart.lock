@@ -4,7 +4,8 @@
     "basePackages": {
       "accounts-ui-bootstrap-dropdown": {},
       "router": {},
-      "holder": {}
+      "holder": {},
+      "spin": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/Dsyko/meteor-holder",
         "tag": "v0.1.9",
         "commit": "081a706bc39ed7b5bd8a115c8fc480378e2cb81d"
+      },
+      "spin": {
+        "git": "https://github.com/SachaG/meteor-spin.git",
+        "tag": "v0.2.0",
+        "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

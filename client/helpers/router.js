@@ -38,6 +38,8 @@ Meteor.Router.filters({
     'requireLogin': function(templateName) {
         if (Meteor.userId()) {
             return templateName;
+        } else if (Meteor.loggingIn()) {
+            return 'loading';
         } else {
             return 'access_denied';
         }
