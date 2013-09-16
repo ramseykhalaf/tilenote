@@ -1,9 +1,9 @@
 <template name="floor_show">
     <div class="floor-container">
-        {{#if this}}
-            {{>tile_list}}
-        {{else}}
-            No floor selected
-        {{/if}}
+        <div class="page-header editable">
+            {{description}}
+            <a class="icon-edit edit" href="{{editFloorPath this}}"/>
+        </div>
+        {{> tile_list}}
     </div>
 </template>

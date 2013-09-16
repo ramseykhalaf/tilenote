@@ -11,7 +11,8 @@ Template.floor_list_item.helpers({
 });
 
 Template.floor_list_item.events({
-	'click .delete': function(e) {
-		Floors.remove(this._id);
-	}
+    'click .edit': function(evt) {
+        evt.preventDefault();
+        Meteor.Router.to('editFloor', this);
+    }
 });

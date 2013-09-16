@@ -1,10 +1,18 @@
 Floors = new Meteor.Collection('floors');
 
+var allowedUpdateFields = ['title', 'description'];
+
 Floors.allow({
-    remove: function(userId, doc) {
-        return (userId === doc.ownerId);
-    }
+    update: ownFloor,
+    remove: ownFloor
 });
+
+Floors.deny({
+    insert: function() {return true;},
+    update: function(userId, doc, fieldNames) {
+        return _.difference(fieldNames, allowedUpdateFields).length;
+    }
+})
 
 Meteor.methods({
     createPost: function(title, description) {
@@ -29,3 +37,16 @@ Meteor.methods({
         return floorId;
     }
 });
+
+// Checks if the floor is owned by the current logged in user.
+// floor can be floor object or floorId
+function ownFloor(userId, floor) {
+    userId = userId || Meteor.userId();
+    if (!userId)
+        return false;
+
+    if (floor.ownerId) 
+        return floor.ownerId === Meteor.userId();
+    
+    return Floors.findOne(floor) === Meteor.userId();
+}

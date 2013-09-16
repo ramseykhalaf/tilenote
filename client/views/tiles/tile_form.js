@@ -5,11 +5,11 @@ Template.tile_form.helpers({
     },
     title: function() {
         var editingTile = Tiles.findOne(Session.get('editingTileId'));
-        return editingTile ? editingTile.title : "";
+        return editingTile ? editingTile.title : '';
     },
     url: function() {
         var editingTile = Tiles.findOne(Session.get('editingTileId'));
-        return editingTile ? editingTile.url : "";
+        return editingTile ? editingTile.url : '';
     },
 });
 

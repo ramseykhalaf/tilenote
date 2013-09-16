@@ -1,8 +1,9 @@
 Meteor.Router.add({
 	'/floors/new': {
-		to: 'floor_new',
+		to: 'floor_form',
 		as: 'newFloor',
 		and: function() {
+            Session.set('editingFloorId', null);
 		}
 	},
     '/floors/:_id': {
@@ -10,6 +11,13 @@ Meteor.Router.add({
         as: 'showFloor',
         and: function(_id) {
             Session.set('floorId', _id);
+        }
+    },
+    '/floors/:_id/edit': {
+        to: 'floor_form',
+        as: 'editFloor',
+        and: function(_id) {
+            Session.set('editingFloorId', _id);
         }
     },
     '/floors': {

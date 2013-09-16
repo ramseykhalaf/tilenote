@@ -2,7 +2,8 @@
     padding: 9px 9px 5px 9px;
 }
 
-.edit {
+.editable .edit {
+    cursor: pointer;
     display: none;
 }
 
