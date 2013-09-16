@@ -3,12 +3,14 @@ if (Floors.find({}).count() == 0 && Tiles.find({}).count() == 0) {
     //create FLoors and hang on to ids
     var meteorFloorId = Floors.insert({
         title: 'Getting started with meteor',
-        description: 'A bunch of handy links for anyone wanting to try meteor for the first time.'
+        description: 'A bunch of handy links for anyone wanting to try meteor for the first time.',
+        createdAt: new Date(2000000),
     });
 
     var newsFloorId = Floors.insert({
         title: 'International News',
-        description: 'Some good news websites, which when read together try to give an unbiased view'
+        description: 'Some good news websites, which when read together try to give an unbiased view',
+        createdAt: new Date(100000),
     });
 
     // Insert Tiles for meteor floor
