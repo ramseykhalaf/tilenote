@@ -1,13 +1,13 @@
 <template name="tile_list_item">
     <li class="tile">
         <div class="thumbnail">
-            <a href={{url}} >
+            <a href="{{url}}" >
           		<img data-src="holder.js/200x200">
             </a>
             <div class="caption">
           	    {{title}}
                 {{#if ownFloor}}
-                    <a class="icon-edit" href={{editTilePath this}}/>
+                    <a class="icon-edit" href="{{editTilePath this}}"/>
                 {{/if}}
             </div>
         </div>
