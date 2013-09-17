@@ -1,5 +1,17 @@
 Floors = new Meteor.Collection('floors');
 
+// Checks if the floor is owned by the current logged in user.
+ownFloor = function(userId, floor) {
+    if (userId && floor.ownerId) {
+        return floor.ownerId === Meteor.userId();
+    }
+    return false;
+};
+
+ownFloorId = function(floorId) {
+    return ownFloor(Meteor.userId, Floors.findOne(floorId));
+}
+
 var allowedUpdateFields = ['title', 'description'];
 
 Floors.allow({
@@ -8,7 +20,6 @@ Floors.allow({
 });
 
 Floors.deny({
-    insert: function() {return true;},
     update: function(userId, doc, fieldNames) {
         return _.difference(fieldNames, allowedUpdateFields).length;
     }
@@ -27,6 +38,8 @@ Meteor.methods({
         if (Floors.findOne({ ownerId: userId, title: title }))
             throw new Meteor.Error(422, 'You already have a floor with the same title');
 
+        //valid inputs
+
         var floorId = Floors.insert({
             title: title,
             description: description,
@@ -37,16 +50,3 @@ Meteor.methods({
         return floorId;
     }
 });
-
-// Checks if the floor is owned by the current logged in user.
-// floor can be floor object or floorId
-function ownFloor(userId, floor) {
-    userId = userId || Meteor.userId();
-    if (!userId)
-        return false;
-
-    if (floor.ownerId) 
-        return floor.ownerId === Meteor.userId();
-    
-    return Floors.findOne(floor) === Meteor.userId();
-}

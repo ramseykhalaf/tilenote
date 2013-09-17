@@ -2,7 +2,15 @@
     <li class="tile">
         <div class="thumbnail editable">
             <a href="{{url}}" >
-          		<img data-src="holder.js/200x200">
+                <div class="webnail-container">
+              		<img class="webnail"
+                        {{#if thumbnailLink}}
+                            src="{{thumbnailLink}}"
+                        {{else}}
+                            data-src="holder.js/200x150"
+                        {{/if}}
+                    />
+                </div>
             </a>
             <div class="caption">
           	    {{title}}

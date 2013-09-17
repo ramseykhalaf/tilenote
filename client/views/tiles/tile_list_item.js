@@ -4,6 +4,6 @@ Template.tile_list_item.rendered = function() {
 
 Template.tile_list_item.helpers({
     ownFloor: function() {
-	   return !!Floors.findOne({ _id: this.floorId, ownerId: Meteor.userId()} );
-    }
+	   return ownFloorId(this.floorId);
+    },
 });
