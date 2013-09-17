@@ -1,7 +1,11 @@
 Deps.autorun(function() {
-    Meteor.subscribe('floors');
+    Meteor.subscribe('floorsPublic');
 });
 
-//Deps.autorun(function() {
-//    Meteor.subscribe('tilesByFloorId', Session.get('floorId'));
-//});
+Deps.autorun(function() {
+    Meteor.subscribe('floorsByOwnerId', Meteor.userId());
+});
+
+Deps.autorun(function() {
+    Meteor.subscribe('tilesByFloorId', Session.get('floorId'));
+});

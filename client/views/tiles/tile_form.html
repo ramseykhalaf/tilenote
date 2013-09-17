@@ -1,0 +1,28 @@
+<template name="tile_form">
+	<form>
+
+		<div class="control-group">
+    		<label class="control-label" for="title">Tile title</label>
+    		<div class="controls">
+        		<input type="text" {{#if editingTile}} value="{{title}}" {{/if}} name="title"/>
+        	</div>
+        </div>
+
+		<div class="control-group">
+    		<label class="control-label" for="url">url</label>
+    		<div class="controls">
+        		<input type="url" {{#if editingTile}} value="{{url}}" {{/if}} name="url"/>
+        	</div>
+        </div>
+
+        <div class="control-group">
+            <input type="submit" value="save" class="btn btn-primary"/>
+        </div>
+        
+	</form>
+
+    {{#if editingTile}}
+        <button class="btn btn-danger removetile">Delete tile</button>
+    {{/if}}
+
+</template>

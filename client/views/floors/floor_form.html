@@ -1,0 +1,27 @@
+<template name="floor_form">
+    <form>
+    	
+    	<div class="control-group">
+    		<label class="control-label" for="title">Floor title</label>
+    		<div class="controls">
+        		<input type="text" name="title" {{#if editingFloor}} value="{{title}}" {{/if}}/>
+        	</div>
+        </div>
+
+        <div class="control-group">
+    		<label class="control-label" for="description">Description</label>
+    		<div class="controls">
+    			<textarea name="description">{{#if editingFloor}}{{description}}{{/if}}</textarea>
+        	</div>
+        </div>
+
+        <div class="control-group">
+        	<input type="submit" value="save" class="btn btn-primary"/>
+        </div>
+
+    </form>
+
+    {{#if editingFloor}}
+        <button class="btn btn-danger delete">Delete floor</button>
+    {{/if}}
+</template>

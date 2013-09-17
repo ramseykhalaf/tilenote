@@ -1,0 +1,23 @@
+<template name="tile_list_item">
+    <li class="tile">
+        <div class="thumbnail editable">
+            <a href="{{url}}" >
+                <div class="webnail-container">
+              		<img class="webnail"
+                        {{#if thumbnailLink}}
+                            src="{{thumbnailLink}}"
+                        {{else}}
+                            data-src="holder.js/200x150"
+                        {{/if}}
+                    />
+                </div>
+            </a>
+            <div class="caption">
+          	    {{title}}
+                {{#if ownFloor}}
+                    <a class="icon-edit edit" href="{{editTilePath this}}"/>
+                {{/if}}
+            </div>
+        </div>
+    </li>
+</template>
