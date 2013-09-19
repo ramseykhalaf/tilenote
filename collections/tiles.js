@@ -30,7 +30,6 @@ Tiles.deny({
         if (!!_.difference(fieldNames, allowedUpdateFields).length) return true;
         doc.title = 'foo';
         doc.thumbnailLink = generateThumbnailLink(doc.url);
-        console.log(doc);
         return false;
     }
 });

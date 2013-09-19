@@ -2,12 +2,23 @@
     <div class="floor-container">
 
         <div class="page-header">
+
+            <span class="label">
+                {{#if isPrivate}}
+                    <i class="icon icon-lock icon-white"/> Private
+                {{else}}
+                    <i class="icon icon-globe icon-white"/> Public
+                {{/if}}
+            </span>
+
             {{description}}
+
             {{#if ownCurrentFloor}}
                 <button class="btn btn-small pull-right edit">
                     <i class="icon-edit"/> edit floor
                 </button>
             {{/if}}
+            
         </div>
 
         <div class="row-fluid">

@@ -12,7 +12,7 @@ ownFloorId = function(floorId) {
     return ownFloor(Meteor.userId, Floors.findOne(floorId));
 }
 
-var allowedUpdateFields = ['title', 'description'];
+var allowedUpdateFields = ['title', 'description', 'isPrivate'];
 
 Floors.allow({
     update: ownFloor,
@@ -26,17 +26,24 @@ Floors.deny({
 })
 
 Meteor.methods({
-    createPost: function(title, description) {
+    createPost: function(title, description, isPrivate) {
         var userId = Meteor.userId();
 
         if (!userId)
-            throw new Meteor.Error(401, 'Login to create a floor');
+            throw new Meteor.Error(401, 'Login to create a floor.');
 
-        if (!title)
-            throw new Meteor.Error(422, 'Title cannot be blank');
+        if (!title || typeof title !== 'string')
+            throw new Meteor.Error(422, 'Title cannot be blank.');
+
+        if (typeof description !== 'string')
+            throw new Meteor.Error(422, 'Description invalid, it must be text.');
+
+        if (typeof isPrivate !== 'boolean')
+            throw new Meteor.Error(422, 'Privacy invalid, it must be a true or false');
+
 
         if (Floors.findOne({ ownerId: userId, title: title }))
-            throw new Meteor.Error(422, 'You already have a floor with the same title');
+            throw new Meteor.Error(422, 'You already have a floor with the same title.');
 
         //valid inputs
 
@@ -44,6 +51,7 @@ Meteor.methods({
             title: title,
             description: description,
             ownerId: userId,
+            isPrivate: isPrivate,
             createdAt: new Date()
         });
 

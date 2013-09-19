@@ -53,6 +53,6 @@ Template.tile_form.events({
             }
         });
 
-        Meteor.Router.to('showFloor', Session.get('currentFloor'));        
+        Meteor.Router.to('showFloor', Session.get('floorId'));        
     }
 });
