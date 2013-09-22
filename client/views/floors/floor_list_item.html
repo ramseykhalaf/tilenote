@@ -2,6 +2,9 @@
     <li {{#if currentFloor}} class="active" {{/if}}>
 		<a href="{{showFloorPath this}}">
 			{{title}}
+            {{#if isPrivate}}
+
+            {{/if}}
     	</a>
     </li>
 </template>

@@ -1,17 +1,21 @@
 <template name="floor_list">
 	<div class="well well-small">
 	    <ul class="nav nav-list">
+
 	    	<li class="nav-header">Public floors</li>
 	        {{#each floorsPublic}}
 	            {{> floor_list_item}}
 	        {{/each}}
+            
 	        <li class="divider"></li>
+
 	        <li class="nav-header">Your floors</li>
 	        {{#each floorsPrivate}}
 	        	{{> floor_list_item}}
 	        {{else}}
 	        	<a href="{{newFloorPath}}">+ new floor</a>
 	        {{/each}}
+
 	    </ul>
 	</div>
 </template>
