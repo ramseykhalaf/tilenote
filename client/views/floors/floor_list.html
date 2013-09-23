@@ -13,7 +13,7 @@
 	        {{#each floorsPrivate}}
 	        	{{> floor_list_item}}
 	        {{else}}
-	        	<a href="{{newFloorPath}}">+ new floor</a>
+	        	<a href="{{pathFor 'newFloor'}}">+ new floor</a>
 	        {{/each}}
 
 	    </ul>

@@ -3,7 +3,7 @@ Meteor.publish('floorsPublic', function() {
 });
 
 Meteor.publish('floorsOwned', function() {
-    return Floors.find({ownerId: Meteor.userId()});
+    return Floors.find({ownerId: this.userId});
 });
 
 Meteor.publish('tilesByFloorId', function(floorId) {

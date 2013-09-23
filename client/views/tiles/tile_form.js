@@ -18,7 +18,7 @@ Template.tile_form.events({
         evt.preventDefault();
         var form = $(evt.target);
 
-        var currentFloor = Session.get('floorId');
+        var currentFloor = Floors.findOne(Session.get('floorId'));
         var editingTileId = Session.get('editingTileId');
         var title = form.find('[name=title]').val();
         var url = form.find('[name=url]').val();
@@ -31,7 +31,7 @@ Template.tile_form.events({
                             if (error) {
                                 console.log(error);
                             } else {
-                                Meteor.Router.to('showFloor', currentFloor);
+                                Router.go('showFloor', currentFloor);
                             }
                          });
         } else { //new tile - insert
@@ -39,7 +39,7 @@ Template.tile_form.events({
                 if (error) {
                     console.log(error);
                 } else {
-                    Meteor.Router.to('showFloor', currentFloor);
+                    Router.go('showFloor', currentFloor);
                 }
             });
         }
@@ -53,6 +53,7 @@ Template.tile_form.events({
             }
         });
 
-        Meteor.Router.to('showFloor', Session.get('floorId'));        
+        var currentFloor = Floors.findOne(Session.get('floorId'));
+        Router.go('showFloor', currentFloor);        
     }
 });

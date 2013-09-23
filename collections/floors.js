@@ -26,7 +26,7 @@ Floors.deny({
 })
 
 Meteor.methods({
-    createPost: function(title, description, isPrivate) {
+    createFloor: function(title, description, isPrivate) {
         var userId = Meteor.userId();
 
         if (!userId)

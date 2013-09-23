@@ -12,6 +12,6 @@ Template.floor_show.helpers({
 
 Template.floor_show.events({
     'click .edit': function() {
-        Meteor.Router.to('editFloor', this);
+        Router.go('editFloor', this);
     }
 });

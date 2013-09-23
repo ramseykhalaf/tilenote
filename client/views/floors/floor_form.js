@@ -32,14 +32,14 @@ Template.floor_form.events({
                 if (error) {
                     return alert(error.reason);
                 }
-                Meteor.Router.to('showFloor', editingFloorId);
+                Router.go('showFloor', {_id: editingFloorId});
             });
         } else { //new floor
-            Meteor.call('createPost', title, description, isPrivate, function(error, newFloorId) {
+            Meteor.call('createFloor', title, description, isPrivate, function(error, newFloorId) {
                 if (error) {
                     return alert(error.reason);
                 }
-                Meteor.Router.to('showFloor', newFloorId);
+                Router.go('showFloor', {_id: newFloorId});
             });
         }
     },
@@ -48,7 +48,7 @@ Template.floor_form.events({
             if (error) {
                 alert(error.reason);
             }
-            Meteor.Router.to('showFloor', Floors.findOne({ownerId: Meteor.userId()}));
+            Router.go('showFloor', Floors.findOne({ownerId: Meteor.userId()}));
         });
     }
 });

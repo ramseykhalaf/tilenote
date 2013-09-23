@@ -1,8 +1,8 @@
 {
   "packages": {
     "accounts-ui-bootstrap-dropdown": {},
-    "router": {},
     "holder": {},
-    "spin": {}
+    "spin": {},
+    "iron-router": {}
   }
 }
