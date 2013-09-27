@@ -1,5 +1,5 @@
 Template.floor_list_item.helpers({
-	currentFloor: function() {
+	isCurrentFloor: function() {
 		return this._id === Session.get('floorId');
 	}
 });

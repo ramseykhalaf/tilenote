@@ -1,5 +1,5 @@
 Meteor.publish('floorsPublic', function() {
-    return Floors.find({isPrivate: false});    
+    return Floors.find({isPublic: true});    
 });
 
 Meteor.publish('floorsOwned', function() {

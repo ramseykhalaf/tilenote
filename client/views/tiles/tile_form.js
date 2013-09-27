@@ -35,7 +35,7 @@ Template.tile_form.events({
                             }
                          });
         } else { //new tile - insert
-            Meteor.call('createTile', currentFloor, title, url, function(error) {
+            Meteor.call('createTile', currentFloor._id, title, url, function(error) {
                 if (error) {
                     console.log(error);
                 } else {

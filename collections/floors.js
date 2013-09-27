@@ -12,7 +12,7 @@ ownFloorId = function(floorId) {
     return ownFloor(Meteor.userId, Floors.findOne(floorId));
 }
 
-var allowedUpdateFields = ['title', 'description', 'isPrivate'];
+var allowedUpdateFields = ['title', 'description', 'isPublic'];
 
 Floors.allow({
     update: ownFloor,
@@ -26,7 +26,7 @@ Floors.deny({
 })
 
 Meteor.methods({
-    createFloor: function(title, description, isPrivate) {
+    createFloor: function(title, description, isPublic) {
         var userId = Meteor.userId();
 
         if (!userId)
@@ -38,7 +38,7 @@ Meteor.methods({
         if (typeof description !== 'string')
             throw new Meteor.Error(422, 'Description invalid, it must be text.');
 
-        if (typeof isPrivate !== 'boolean')
+        if (typeof isPublic !== 'boolean')
             throw new Meteor.Error(422, 'Privacy invalid, it must be a true or false');
 
 
@@ -51,7 +51,7 @@ Meteor.methods({
             title: title,
             description: description,
             ownerId: userId,
-            isPrivate: isPrivate,
+            isPublic: isPublic,
             createdAt: new Date()
         });
 

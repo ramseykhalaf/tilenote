@@ -1,10 +1,7 @@
 <template name="floor_list_item">
-    <li {{#if currentFloor}} class="active" {{/if}}>
+    <li {{#if isCurrentFloor}} class="active" {{/if}}>
 		<a href="{{pathFor 'showFloor' this}}">
 			{{title}}
-            {{#if isPrivate}}
-
-            {{/if}}
     	</a>
     </li>
 </template>

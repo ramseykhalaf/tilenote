@@ -35,8 +35,8 @@ Tiles.deny({
 });
 
 Meteor.methods({
-    createTile: function(floor, title, url) {
-        if (!ownFloor(floor))
+    createTile: function(floorId, title, url) {
+        if (!ownFloorId(floorId))
             throw new Meteor.Error(403, 'You do not own this floor');
 
         if (!title)
@@ -48,7 +48,7 @@ Meteor.methods({
         //valid inputs - continue
 
         var newTile = {
-            floorId: floor._id,
+            floorId: floorId,
             title: title,
             url: url,
             thumbnailLink: generateThumbnailLink(url)

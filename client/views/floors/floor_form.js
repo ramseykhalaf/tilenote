@@ -10,9 +10,9 @@ Template.floor_form.helpers({
         var editingFloor = Floors.findOne(Session.get('editingFloorId'));
         return editingFloor ? editingFloor.description : '';
     },
-    isPrivate: function() {
+    isPublic: function() {
         var editingFloor = Floors.findOne(Session.get('editingFloorId'));
-        return editingFloor ? editingFloor.isPrivate : '';
+        return editingFloor ? editingFloor.isPublic : false;
     }
 
 });
@@ -24,18 +24,18 @@ Template.floor_form.events({
         var form = $(evt.target);
         var title = form.find('[name=title]').val();
         var description = form.find('[name=description]').val();
-        var isPrivate = !!form.find('[name=isPrivate]').attr('checked');
+        var isPublic = !!form.find('[name=isPublic]').attr('checked');
         var editingFloorId = Session.get('editingFloorId');
 
         if (editingFloorId) { //update
-            Floors.update(editingFloorId, {$set: {title: title, description: description, isPrivate: isPrivate}}, function(error) {
+            Floors.update(editingFloorId, {$set: {title: title, description: description, isPublic: isPublic}}, function(error) {
                 if (error) {
                     return alert(error.reason);
                 }
                 Router.go('showFloor', {_id: editingFloorId});
             });
         } else { //new floor
-            Meteor.call('createFloor', title, description, isPrivate, function(error, newFloorId) {
+            Meteor.call('createFloor', title, description, isPublic, function(error, newFloorId) {
                 if (error) {
                     return alert(error.reason);
                 }

@@ -4,10 +4,10 @@
         <div class="page-header">
 
             <span class="label">
-                {{#if isPrivate}}
-                    <i class="icon icon-lock icon-white"/> Private
-                {{else}}
+                {{#if isPublic}}
                     <i class="icon icon-globe icon-white"/> Public
+                {{else}}
+                    <i class="icon icon-lock icon-white"/> Private
                 {{/if}}
             </span>
 
