@@ -3,6 +3,8 @@
     "accounts-ui-bootstrap-dropdown": {},
     "holder": {},
     "spin": {},
-    "iron-router": {}
+    "iron-router": "0.5.4",
+    "collection2": {},
+    "autoform": {}
   }
 }
