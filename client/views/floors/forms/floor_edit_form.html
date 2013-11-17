@@ -1,0 +1,29 @@
+<template name="floor_edit_form">
+    {{#autoForm schema="Floors" id="floor-edit-form" validation=submit doc=this novalidate=""}}
+        <fieldset>
+            <legend>Edit floor</legend>
+
+            <div class="control-group{{#if afFieldIsInvalid 'title'}} error{{/if}}">
+                {{afFieldLabel 'title'}}
+                {{afFieldInput 'title'}}
+                {{#if afFieldIsInvalid 'title'}}
+                    <span class="help-block">{{afFieldMessage 'title'}}</span>
+                {{/if}}
+            </div>
+
+            <div class="control-group{{#if afFieldIsInvalid 'description'}} error{{/if}}">
+                {{afFieldLabel 'description'}}
+                {{afFieldInput 'description' rows="2"}}
+                {{#if afFieldIsInvalid 'description'}}
+                    <span class="help-block">{{afFieldMessage 'description'}}</span>
+                {{/if}}
+            </div>
+
+            {{afQuickField "isPublic" radio="true"
+            trueLabel="Visible to everyone" falseLabel="Only you can see it"}}
+
+            <button type="submit" class="btn btn-primary update">Update floor</button>
+            <button type="button" class="btn btn-danger delete">Delete</button>
+        </fieldset>
+    {{/autoForm}}
+</template>

@@ -16,7 +16,7 @@ Router.map(function() {
         'newFloor',
         {
             path: '/floors/new',
-            template: 'floor_form'
+            template: 'floor_new_form'
         },
         function() { Session.set('editingFloorId', null); this.render(); }
     );
@@ -34,7 +34,7 @@ Router.map(function() {
         'editFloor',
         {
             path: '/floors/:_id/edit',
-            template: 'floor_form',
+            template: 'floor_edit_form',
             data: function() { return Floors.findOne(this.params._id); }
         },
         function() { Session.set('editingFloorId', this.params._id); this.render(); }

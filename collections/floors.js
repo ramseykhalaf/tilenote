@@ -1,4 +1,25 @@
-Floors = new Meteor.Collection('floors');
+Floors = new Meteor.Collection2('floors', {
+    schema: {
+        ownerId: {
+            type: String
+        },
+        title: {
+            type: String
+        },
+        description: {
+            type: String,
+            optional: true
+        },
+        isPublic: {
+            type: Boolean
+        },
+        createdAt: {
+            type: Date
+        }
+    }
+});
+
+var allowedUpdateFields = ['title', 'description', 'isPublic'];
 
 // Checks if the floor is owned by the current logged in user.
 ownFloor = function(userId, floor) {
@@ -12,9 +33,8 @@ ownFloorId = function(floorId) {
     return ownFloor(Meteor.userId, Floors.findOne(floorId));
 }
 
-var allowedUpdateFields = ['title', 'description', 'isPublic'];
-
 Floors.allow({
+    insert: ownFloor,
     update: ownFloor,
     remove: ownFloor
 });
@@ -23,38 +43,33 @@ Floors.deny({
     update: function(userId, doc, fieldNames) {
         return _.difference(fieldNames, allowedUpdateFields).length;
     }
-})
+});
 
-Meteor.methods({
-    createFloor: function(title, description, isPublic) {
-        var userId = Meteor.userId();
+Floors.beforeInsert = function floorsBeforeInsert(formDoc) {
+    return _.extend(formDoc, {
+        ownerId: Meteor.userId(),
+        createdAt: new Date()
+    });
+};
 
-        if (!userId)
-            throw new Meteor.Error(401, 'Login to create a floor.');
-
-        if (!title || typeof title !== 'string')
-            throw new Meteor.Error(422, 'Title cannot be blank.');
-
-        if (typeof description !== 'string')
-            throw new Meteor.Error(422, 'Description invalid, it must be text.');
-
-        if (typeof isPublic !== 'boolean')
-            throw new Meteor.Error(422, 'Privacy invalid, it must be a true or false');
-
-
-        if (Floors.findOne({ ownerId: userId, title: title }))
-            throw new Meteor.Error(422, 'You already have a floor with the same title.');
-
-        //valid inputs
-
-        var floorId = Floors.insert({
-            title: title,
-            description: description,
-            ownerId: userId,
-            isPublic: isPublic,
-            createdAt: new Date()
-        });
-
-        return floorId;
+Floors.callbacks({
+    insert: function(error, floorId) {
+        if (floorId) {
+            Router.go('showFloor', {_id: floorId});
+        }
+    },
+    update: function(error) {
+        if (error) {
+            console.log("Update Error:", error);
+        } else {
+            Router.go('showFloor', {_id: Session.get('floorId')});
+        }
+    },
+    remove: function(error) {
+        if (error) {
+            console.log("Remove Error:", error);
+        } else {
+            Router.go('listFloors');
+        }
     }
 });

@@ -3,6 +3,8 @@
 
         <div class="page-header">
 
+            {{description}}
+
             <span class="label">
                 {{#if isPublic}}
                     <i class="icon icon-globe icon-white"/> Public
@@ -10,8 +12,6 @@
                     <i class="icon icon-lock icon-white"/> Private
                 {{/if}}
             </span>
-
-            {{description}}
 
             {{#if ownCurrentFloor}}
                 <button class="btn btn-small pull-right edit">
