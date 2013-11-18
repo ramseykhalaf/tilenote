@@ -1,8 +1,8 @@
 <template name="floor_edit_form">
     {{#autoForm schema="Floors" id="floor-edit-form" validation=submit doc=this novalidate=""}}
         <fieldset>
-            <legend>Edit floor</legend>
-
+            <h3>Edit Floor</h3>
+            
             <div class="control-group{{#if afFieldIsInvalid 'title'}} error{{/if}}">
                 {{afFieldLabel 'title'}}
                 {{afFieldInput 'title'}}
@@ -20,10 +20,10 @@
             </div>
 
             {{afQuickField "isPublic" radio="true"
-            trueLabel="Visible to everyone" falseLabel="Only you can see it"}}
+            trueLabel="Publicly visible" falseLabel="Hidden"}}
 
             <button type="submit" class="btn btn-primary update">Update floor</button>
-            <button type="button" class="btn btn-danger delete">Delete</button>
+            <button type="button" class="btn btn-danger delete" data-floorid="{{../_id}}">Delete</button>
         </fieldset>
     {{/autoForm}}
 </template>

@@ -1,11 +1,17 @@
 Template.floor_edit_form.events({
-    'click .delete': function() {
-        Floors.remove(Session.get('editingFloorId'), function(error) {
-            console.log(this);
+    'click .delete': function(event) {
+        event.preventDefault();
+        var floorId = event.target.dataset.floorid;
+        Floors.remove(floorId, function(error) {
             if (error) {
                 alert(error.reason);
             }
-            Router.go('showFloor', Floors.findOne({ownerId: Meteor.userId()}));
+            var floorToShow = Floors.findOne({ownerId: Meteor.userId()});
+            if (floorToShow) {
+                Router.go('showFloor', floorToShow);
+            } else {
+                Router.go('listFloors');
+            }
         });
     }
-})
+});

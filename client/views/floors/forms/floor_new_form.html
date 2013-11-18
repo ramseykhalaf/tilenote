@@ -1,7 +1,7 @@
 <template name="floor_new_form">
     {{#autoForm schema="Floors" id="floor-new-floor" validation=submit novalidate=""}}
         <fieldset>
-            <legend>Create a new floor</legend>
+            <h3>New floor</h3>
 
             <div class="control-group{{#if afFieldIsInvalid 'title'}} error{{/if}}">
                 {{afFieldLabel 'title'}}
@@ -20,7 +20,7 @@
             </div>
 
             {{afQuickField "isPublic" radio="true"
-            trueLabel="Visible to everyone" falseLabel="Only you can see it"}}
+            trueLabel="Publicly visible" falseLabel="Hidden"}}
 
             <button type="submit" class="btn btn-primary insert">Create floor</button>
 

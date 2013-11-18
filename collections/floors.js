@@ -11,7 +11,8 @@ Floors = new Meteor.Collection2('floors', {
             optional: true
         },
         isPublic: {
-            type: Boolean
+            type: Boolean,
+            label: 'Public floor'
         },
         createdAt: {
             type: Date
