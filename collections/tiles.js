@@ -1,59 +1,66 @@
-Tiles = new Meteor.Collection('tiles');
+Tiles = new Meteor.Collection2('tiles', {
+    schema: {
+        floorId: {
+            type: String
+        },
+        title: {
+            type: String
+        },
+        url: {
+            type: String,
+            label: 'URL'
+        },
+        thumbnailLink: {
+            type: String
+        }
+    }
+});
 
 ownFloorOfTile = function(userId, tile) {
     if(userId && tile) {
         return !!Floors.findOne({ _id: tile.floorId, ownerId: userId });
     }
     return false;
-}
-
-function validURL(str) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-  '(\\#[-a-z\\d_]*)?$','i');
-  
-  return pattern.test(str);
-}
+};
 
 var allowedUpdateFields = ['title', 'url', 'thumbnailLink'];
 
 Tiles.allow({
+    insert: ownFloorOfTile,
     update: ownFloorOfTile,
     remove: ownFloorOfTile
 });
 
 Tiles.deny({
     update: function(userId, doc, fieldNames, modifier) {
-        if (!!_.difference(fieldNames, allowedUpdateFields).length) return true;
-        doc.title = 'foo';
-        doc.thumbnailLink = generateThumbnailLink(doc.url);
-        return false;
+        return _.difference(fieldNames, allowedUpdateFields).length;
     }
 });
 
-Meteor.methods({
-    createTile: function(floorId, title, url) {
-        if (!ownFloorId(floorId))
-            throw new Meteor.Error(403, 'You do not own this floor');
+//Client code
+Tiles.beforeInsert = function tilesBeforeInsert(formDoc) {
+    formDoc.thumbnailLink = generateThumbnailLink(formDoc.url);
+    console.log(formDoc);
+    return formDoc;
+};
 
-        if (!title)
-            throw new Meteor.Error(403, 'Title cannot be blank');
+Tiles.beforeUpdate = function tilesBeforeUpdate(tileId, modifier) {
+    if (modifier.$set.url) {
+        modifier.$set.thumbnailLink = generateThumbnailLink(modifier.$set.url);
+    }
+    return modifier;
+};
 
-        if (!url || !validURL(url))
-            throw new Meteor.Error(403, 'URL not valid');
-
-        //valid inputs - continue
-
-        var newTile = {
-            floorId: floorId,
-            title: title,
-            url: url,
-            thumbnailLink: generateThumbnailLink(url)
-        };
-
-        return Tiles.insert(newTile);
+Tiles.callbacks({
+    insert: function(error, tileId) {
+        console.log(arguments);
+        if (tileId) {
+            Router.go('showFloor', {_id: Tiles.findOne(tileId).floorId});
+        }
+    },
+    update: function(error) {
+        if (error) {
+            console.log(error);
+        }
     }
 });

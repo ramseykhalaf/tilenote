@@ -1,0 +1,28 @@
+<template name="tile_new_form">
+    {{#autoForm schema="Tiles" id="tile-new-form" data="this" validation=submit novalidate="" }}
+        <fieldset>
+            <h3>New tile</h3>
+
+            <input type="text" name= "floorId" value="{{../floorId}}" style="display: none">
+
+            <div class="control-group{{#if afFieldIsInvalid 'title'}} error{{/if}}">
+                {{afFieldLabel 'title'}}
+                {{afFieldInput 'title'}}
+                {{#if afFieldIsInvalid 'title'}}
+                    <span class="help-block">{{afFieldMessage 'title'}}</span>
+                {{/if}}
+            </div>
+
+            <div class="control-group{{#if afFieldIsInvalid 'url'}} error{{/if}}">
+                {{afFieldLabel 'url'}}
+                {{afFieldInput 'url'}}
+                {{#if afFieldIsInvalid 'url'}}
+                    <span class="help-block">{{afFieldMessage 'url'}}</span>
+                {{/if}}
+            </div>
+
+            <button type="submit" class="btn btn-primary insert">new tile</button>
+
+        </fieldset>
+    {{/autoForm}}
+</template>

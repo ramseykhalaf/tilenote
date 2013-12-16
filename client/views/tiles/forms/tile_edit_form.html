@@ -1,0 +1,24 @@
+<template name="tile_edit_form">
+    {{#autoform schema=Tiles doc=this id="tile-edit-form"}}
+        <fieldset>
+            <h3>Edit tile</h3>
+
+            <div class="control-group{{#if afFieldIsInvalid 'title'}} error{{/if}}">
+                {{afFieldLabel 'title'}}
+                {{afFieldInput 'title'}}
+                {{#if afFieldIsInvalid 'title'}}
+                    <span class="help-block">{{afFieldMessage 'title'}}</span>
+                {{/if}}
+            </div>
+
+            <div class="control-group{{#if afFieldIsInvalid 'url'}} error{{/if}}">
+                {{afFieldLabel 'url'}}
+                {{afFieldInput 'url'}}
+                {{#if afFieldIsInvalid 'url'}}
+                    <span class="help-block">{{afFieldMessage 'url'}}</span>
+                {{/if}}
+            </div>
+
+        </fieldset>
+    {{/autoform}}
+</template>

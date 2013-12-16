@@ -42,12 +42,8 @@ Router.map(function() {
         'newTileForFloor',
         {
             path: '/floors/:_id/tiles/new',
-            template: 'tile_form'
-        },
-        function() {
-            Session.set('floorId', this.params._id);
-            Session.set('editingTileId', null);
-            this.render();
+            template: 'tile_new_form',
+            data: function() { return {floorId: this.params._id}; }
         }
     );
 
@@ -55,9 +51,9 @@ Router.map(function() {
         'editTile',
         {
             path: '/floors/:floorId/tiles/:_id/edit',
-            template: 'tile_form'
-        }, 
-        function() { Session.set('editingTileId', this.params._id); this.render(); }
+            template: 'tile_edit_form',
+            data: function() { return Tiles.findOne(this.params._id); }
+        }
     );
 
 });
